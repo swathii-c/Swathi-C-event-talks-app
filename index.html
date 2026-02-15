@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Talk Event Schedule</title>
+    <style id="injected-styles">body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+section {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+#search-section {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#category-search {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 60%;
+    max-width: 400px;
+}
+
+#search-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+.talk-card {
+    background-color: #e9ecef;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+}
+
+.talk-card h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.talk-card p {
+    margin-bottom: 5px;
+}
+
+.talk-card .speakers {
+    font-weight: bold;
+}
+
+.talk-card .category {
+    font-style: italic;
+    color: #666;
+}
+
+.talk-card .time {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.break-card {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    #search-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #category-search {
+        width: 80%;
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Tech Talk Event</h1>
+        <p>A full day of insightful technical talks.</p>
+    </header>
+
+    <main>
+        <section id="search-section">
+            <input type="text" id="category-search" placeholder="Search by category...">
+            <button id="search-button">Search</button>
+        </section>
+
+        <section id="schedule">
+            <h2>Event Schedule</h2>
+            <div id="talks-container">
+                <!-- Talks will be injected here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tech Talk Event</p>
+    </footer>
+
+    
+                <script id="injected-script">
+                    // Helper to format date for display - defined globally for access by scriptContent
+                    function formatTime(date) {
+                        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    }
+
+                    const talks = [
+    {
+        "title": "Opening Keynote: The Future of AI",
+        "speakers": [
+            "Dr. Evelyn Reed"
+        ],
+        "category": [
+            "AI",
+            "Keynote",
+            "Future Tech"
+        ],
+        "duration": 60,
+        "description": "A deep dive into the upcoming trends and ethical considerations in Artificial Intelligence."
+    },
+    {
+        "title": "Building Scalable Microservices with Node.js",
+        "speakers": [
+            "John Doe",
+            "Jane Smith"
+        ],
+        "category": [
+            "Backend",
+            "Node.js",
+            "Microservices"
+        ],
+        "duration": 60,
+        "description": "Learn best practices for designing and implementing scalable microservices architectures using Node.js."
+    },
+    {
+        "title": "Frontend Frameworks: A Comparative Analysis",
+        "speakers": [
+            "Alice Johnson"
+        ],
+        "category": [
+            "Frontend",
+            "JavaScript",
+            "Web Development"
+        ],
+        "duration": 60,
+        "description": "An in-depth look at popular frontend frameworks, their strengths, weaknesses, and ideal use cases."
+    },
+    {
+        "title": "Cybersecurity Essentials for Developers",
+        "speakers": [
+            "Robert Davis"
+        ],
+        "category": [
+            "Security",
+            "Development",
+            "Best Practices"
+        ],
+        "duration": 60,
+        "description": "Crucial security practices every developer should know to build robust and secure applications."
+    },
+    {
+        "title": "Cloud Native Development with Kubernetes",
+        "speakers": [
+            "Maria Garcia",
+            "David Lee"
+        ],
+        "category": [
+            "Cloud",
+            "DevOps",
+            "Kubernetes"
+        ],
+        "duration": 60,
+        "description": "Explore how to leverage Kubernetes for deploying, managing, and scaling cloud-native applications."
+    },
+    {
+        "title": "Data Visualization with D3.js",
+        "speakers": [
+            "Sophia Miller"
+        ],
+        "category": [
+            "Data Science",
+            "Frontend",
+            "Visualization"
+        ],
+        "duration": 60,
+        "description": "Master the art of creating interactive and compelling data visualizations using the powerful D3.js library."
+    }
+]; // Make talks data available globally for the script
+
+                    document.addEventListener('DOMContentLoaded', () => {
+    const talksContainer = document.getElementById('talks-container');
+    const searchInput = document.getElementById('category-search');
+    const searchButton = document.getElementById('search-button');
+
+    const eventStartTime = new Date();
+    eventStartTime.setHours(10, 0, 0, 0); // Event starts at 10:00 AM
+
+    const renderSchedule = (filteredTalks) => {
+        talksContainer.innerHTML = '';
+        let currentTime = new Date(eventStartTime);
+
+        filteredTalks.forEach((talk, index) => {
+            // Add talk to schedule
+            const talkEndTime = new Date(currentTime.getTime() + talk.duration * 60 * 1000);
+            const talkElement = document.createElement('div');
+            talkElement.classList.add('talk-card');
+            talkElement.innerHTML = `
+                <p class="time">${formatTime(currentTime)} - ${formatTime(talkEndTime)}</p>
+                <h3>${talk.title}</h3>
+                <p class="speakers"><strong>Speakers:</strong> ${talk.speakers.join(' & ')}</p>
+                <p class="category"><strong>Categories:</strong> ${talk.category.join(', ')}</p>
+                <p>${talk.description}</p>
+            `;
+            talksContainer.appendChild(talkElement);
+            currentTime = talkEndTime;
+
+            // Add transition break if not the last talk
+            if (index < filteredTalks.length - 1) {
+                if (index === 2) { // Special case for lunch after the 3rd talk (index 2)
+                    const lunchEndTime = new Date(currentTime.getTime() + 60 * 60 * 1000); // 1 hour lunch
+                    const lunchElement = document.createElement('div');
+                    lunchElement.classList.add('break-card');
+                    lunchElement.textContent = `Lunch Break: ${formatTime(currentTime)} - ${formatTime(lunchEndTime)}`;
+                    talksContainer.appendChild(lunchElement);
+                    currentTime = lunchEndTime;
+                } else {
+                    const transitionEndTime = new Date(currentTime.getTime() + 10 * 60 * 1000); // 10 minutes transition
+                    const transitionElement = document.createElement('div');
+                    transitionElement.classList.add('break-card');
+                    transitionElement.textContent = `Transition Break: ${formatTime(currentTime)} - ${formatTime(transitionEndTime)}`;
+                    talksContainer.appendChild(transitionElement);
+                    currentTime = transitionEndTime;
+                }
+            }
+        });
+    };
+
+    searchButton.addEventListener('click', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredTalks = talks.filter(talk =>
+            talk.category.some(cat => cat.toLowerCase().includes(searchTerm))
+        );
+        renderSchedule(filteredTalks);
+    });
+
+    // Initial render
+    renderSchedule(talks);
+});
+ // Original content of script.js (which already has DOMContentLoaded)
+                </script>
+            
+</body>
+</html>
